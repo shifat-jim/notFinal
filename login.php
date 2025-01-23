@@ -1,26 +1,26 @@
 <?php
 session_start();
 
-// Simulated user data (this would normally be retrieved from a database)
+// Simulated users database (For demo purposes)
 $users = [
     '0112230815' => ['password' => '1234', 'name' => 'John Doe', 'email' => 'john@example.com'],
-    '0112230816' => ['password' => '5678', 'name' => 'Jane Doe', 'email' => 'jane@example.com'],
+    '0112230816' => ['password' => '5678', 'name' => 'Jane Doe', 'email' => 'jane@example.com']
 ];
 
-// Check if the form is submitted
+// Handle the login process
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nid = $_POST['NID'];
     $password = $_POST['password'];
 
-    // Validate the login credentials
+    // Check if the user exists in the simulated database
     if (isset($users[$nid]) && $users[$nid]['password'] === $password) {
-        // Store user data in session
-        $_SESSION['user'] = $users[$nid];
-        // Redirect to profile page
-        header("Location: profile.php");
+        $_SESSION['user'] = $users[$nid]; // Store user info in session
+        header("Location: profile.php"); // Redirect to profile page
         exit();
     } else {
-        echo "Invalid credentials!";
+        // If login failed, redirect back to login page with error
+        header("Location: login.html?error=true");
+        exit();
     }
 }
 ?>

@@ -12,21 +12,73 @@
 <body>
 
     <div class="container" id="container">
+        <!-- Sign Up Form -->
+        <div class="form-container sign-up">
+            <form>
+                <h1>Create Account</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+                <span>Please fill up all the information correctly</span>
+                <input type="text" placeholder="Name">
+                <input type="number" placeholder="NID">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        
+        <!-- Log In Form -->
         <div class="form-container sign-in">
-            <form method="POST" action="login_backend.php">
+            <form onsubmit="return func()">
                 <h1>Log In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                 </div>
-                <span>Use your NID and password</span>
-                <input type="number" name="NID" placeholder="NID" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <a href="#">Forget Your Password?</a>
+                <span>You can use your email and password</span>
+                <input type="number" id="NID" placeholder="NID" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <a href="#">Forgot Your Password?</a>
                 <button type="submit" class="login-btn">Log In</button>
             </form>
         </div>
+
+        <!-- Toggle Between Sign Up and Log In -->
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>eCitizenHub</h1>
+                    <p>Enter your personal details to create an account</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>eCitizenHub</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function func() {
+            // Get user input
+            var NID = document.getElementById("NID").value;
+            var pass = document.getElementById('password').value;
+
+            // Check if credentials match the predefined ones (for demo purposes)
+            if (NID == '1234' && pass == '1234') {
+                alert("Login successful!");
+                window.location.assign("index.html");  // Redirect to index page
+                return false;  // Prevent the form from submitting
+            } else {
+                alert("Incorrect NID or Password. Please try again.");
+                return false;  // Prevent the form from submitting
+            }
+        }
+    </script>
 
     <script src="script.js"></script>
 </body>
