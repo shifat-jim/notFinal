@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-// Check if user is logged in
+// Check if the user is logged in
 if (!isset($_SESSION['user'])) {
-    header("Location: login.html"); // Redirect to login if not logged in
+    header("Location: login.html"); // Redirect to login page if not logged in
     exit();
 }
 
-// Retrieve user data from session
+// Get user data from session
 $user = $_SESSION['user'];
 ?>
 
@@ -42,7 +42,6 @@ $user = $_SESSION['user'];
 
     <div class="container my-4">
         <h2>Welcome, <?php echo $user['name']; ?>!</h2>
-        <p><strong>NID:</strong> <?php echo $user['nid']; ?></p>
         <p><strong>Email:</strong> <?php echo $user['email']; ?></p>
     </div>
 
